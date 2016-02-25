@@ -25,7 +25,7 @@ body {
 	line-height: 150%;
 	position: relative;
 	background: #1E2633;
-	font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 /*
@@ -86,19 +86,10 @@ body {
 	}
 	.splash h2 {
 		left: 0;
-		top: -100px;
 		width: 100%;
 		position: fixed;
 		text-align: center;
-		transition: top 0.2s ease-out;
-		transform-origin: center -500px;
 	}
-		.splash.active h2 {
-			top: 50px;
-			transition: none;
-			animation-duration: 1s;
-			animation-name: pendulum;
-		}
 	.splash.cover {
 		background-image: url(/images/cover.jpg);
 	}

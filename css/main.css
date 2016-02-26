@@ -115,8 +115,32 @@ h1, h2, h3, h4, h5, h6 {
 	position: fixed;
 	font-size: 2.2em;
 	line-height: 150%;
+	padding-left: 5px;
+	box-sizing: border-box;
 	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
+#team span {
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	position: fixed;
+	font-size: 22em;
+	line-height: 52%;
+	text-shadow: none;
+	letter-spacing: -0.1em;
+	color: rgba(255, 255, 255, 0.05);
+	transition: opacity 0.5s ease-out;
+}
+	#team .active-0 li:nth-child(1) span,
+	#team .active-1 li:nth-child(2) span,
+	#team .active-2 li:nth-child(3) span,
+	#team .active-3 li:nth-child(4) span,
+	#team .active-4 li:nth-child(5) span,
+	#team .active-5 li:nth-child(6) span,
+	#team .active-6 li:nth-child(7) span,
+	#team .active-7 li:nth-child(8) span {
+		opacity: 1;
+	}
 
 /*
 	MEDIA

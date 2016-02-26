@@ -5,6 +5,7 @@ var nav = document.querySelector('#nav'),
 
 	// Team section
 	team = document.querySelector('#team'),
+	teamList = team.querySelector('ul'),
 	teamNames = team.querySelectorAll('li'),
 	teamHeader = team.querySelector('h2'),
 	teamHeaderY = {
@@ -63,14 +64,23 @@ function windowScroll(ev) {
 		newActive.classList.add('active');
 	}
 
-	// Do Team title
+	// Do Team things
 	if (newActive === team) {
-		teamHeader.style.opacity = 1;
-		teamHeader.style.top = teamHeaderY.active+'px';
-
 		var didSet = false,
+			teamLength = ANIM.team.length,
+			percentage = (TEAM_HEIGHT / (teamLength + 1)) / TEAM_HEIGHT,
 			relativeTop = (scrollTop - WINDOW_HEIGHT) / (TEAM_HEIGHT - WINDOW_HEIGHT);
-		for (var i = 0, l = ANIM.team.length; i < l; i++) {
+
+		if (relativeTop < percentage * teamLength) {
+			teamHeader.style.opacity = 1;
+			teamHeader.style.top = teamHeaderY.active+'px';
+		} else {
+			var opacity = 1 - ((relativeTop - (percentage * teamLength)) / percentage);
+			teamHeader.style.opacity = opacity;
+			teamHeader.style.top = teamHeaderY.min - ((teamHeaderY.min - teamHeaderY.active) * opacity)+'px';
+		}
+
+		for (var i = 0; i < teamLength; i++) {
 			didSet = false;
 			for (var j = 0, k = ANIM.team[i].length; j < k; j++) {
 				if (relativeTop >= ANIM.team[i][j].time[0] && relativeTop < ANIM.team[i][j].time[1]) {
@@ -84,9 +94,13 @@ function windowScroll(ev) {
 				} else {
 					setAnimPosition(teamNames[i], ANIM.team[i][ANIM.team[i].length - 1], 1);
 				}
+				teamList.className = '';
+			} else if (relativeTop >= (percentage * i) && relativeTop < Math.min((percentage * (i + 1)), (percentage * teamLength))) {
+				teamList.className = 'active-'+i;
 			}
 		}
 	} else if (newActive === cover) {
+		teamList.className = '';
 		if (scrollTop > HALF_WINDOW_HEIGHT) {
 			var opacity = (scrollTop - HALF_WINDOW_HEIGHT) / HALF_WINDOW_HEIGHT;
 			teamHeader.style.opacity = opacity;
@@ -95,14 +109,19 @@ function windowScroll(ev) {
 			teamHeader.style.opacity = 0;
 			teamHeader.style.top = teamHeaderY.max+'px';
 		}
-		for (var i = 0, l = ANIM.team.length; i < l; i++) {
-			setAnimPosition(teamNames[i], ANIM.team[i][0], 0);
+		if (oldActive !== cover) {
+			for (var i = 0, l = ANIM.team.length; i < l; i++) {
+				setAnimPosition(teamNames[i], ANIM.team[i][0], 0);
+			}
 		}
 	} else {
+		teamList.className = '';
 		teamHeader.style.opacity = 0;
 		teamHeader.style.top = teamHeaderY.min+'px';
-		for (var i = 0, l = ANIM.team.length; i < l; i++) {
-			setAnimPosition(teamNames[i], ANIM.team[i][ANIM.team[i].length - 1], 1);
+		if (oldActive === team) {
+			for (var i = 0, l = ANIM.team.length; i < l; i++) {
+				setAnimPosition(teamNames[i], ANIM.team[i][ANIM.team[i].length - 1], 1);
+			}
 		}
 	}
 }

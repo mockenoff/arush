@@ -1,5 +1,7 @@
 var nav = document.querySelector('#nav'),
 	cover = document.querySelector('#cover'),
+	media = document.querySelector('#media'),
+	contact = document.querySelector('#contact'),
 
 	// Team section
 	team = document.querySelector('#team'),
@@ -46,6 +48,12 @@ function windowScroll(ev) {
 	} else if (scrollTop >= WINDOW_HEIGHT && scrollTop < WINDOW_HEIGHT + TEAM_HEIGHT) {
 		newActive = team;
 		history.replaceState({}, '', '#team');
+	} else if (scrollTop >= WINDOW_HEIGHT + TEAM_HEIGHT && scrollTop < (WINDOW_HEIGHT * 2) + TEAM_HEIGHT) {
+		newActive = media;
+		history.replaceState({}, '', '#media');
+	} else if (scrollTop >= (WINDOW_HEIGHT * 2) + TEAM_HEIGHT && scrollTop < (WINDOW_HEIGHT * 3) + TEAM_HEIGHT) {
+		newActive = contact;
+		history.replaceState({}, '', '#contact');
 	}
 
 	if (newActive === oldActive) {
@@ -60,11 +68,21 @@ function windowScroll(ev) {
 		teamHeader.style.opacity = 1;
 		teamHeader.style.top = teamHeaderY.active+'px';
 
-		var relativeTop = (scrollTop - WINDOW_HEIGHT) / (TEAM_HEIGHT - WINDOW_HEIGHT);
+		var didSet = false,
+			relativeTop = (scrollTop - WINDOW_HEIGHT) / (TEAM_HEIGHT - WINDOW_HEIGHT);
 		for (var i = 0, l = ANIM.team.length; i < l; i++) {
+			didSet = false;
 			for (var j = 0, k = ANIM.team[i].length; j < k; j++) {
 				if (relativeTop >= ANIM.team[i][j].time[0] && relativeTop < ANIM.team[i][j].time[1]) {
+					didSet = true;
 					setAnimPosition(teamNames[i], ANIM.team[i][j], relativeTop);
+				}
+			}
+			if (didSet === false) {
+				if (relativeTop <= 0) {
+					setAnimPosition(teamNames[i], ANIM.team[i][0], 0);
+				} else {
+					setAnimPosition(teamNames[i], ANIM.team[i][ANIM.team[i].length - 1], 1);
 				}
 			}
 		}

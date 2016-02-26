@@ -1,6 +1,5 @@
 var nav = document.querySelector('#nav'),
 	cover = document.querySelector('#cover'),
-	media = document.querySelector('#media'),
 	contact = document.querySelector('#contact'),
 
 	// Team section
@@ -10,6 +9,16 @@ var nav = document.querySelector('#nav'),
 	teamHeader = team.querySelector('h2'),
 	teamHeaderY = {
 		min: -teamHeader.clientHeight,
+		max: 0,
+		active: 100,
+		current: 0,
+	},
+
+	// Media section
+	media = document.querySelector('#media'),
+	mediaHeader = media.querySelector('h2'),
+	mediaHeaderY = {
+		min: -mediaHeader.clientHeight,
 		max: 0,
 		active: 100,
 		current: 0,
@@ -26,6 +35,7 @@ function windowResize(ev) {
 	WINDOW_HEIGHT = window.innerHeight;
 	HALF_WINDOW_HEIGHT = WINDOW_HEIGHT / 2;
 	teamHeaderY.max = WINDOW_HEIGHT + Math.abs(teamHeaderY.min);
+	mediaHeaderY.max = WINDOW_HEIGHT + Math.abs(mediaHeaderY.min);
 }
 window.addEventListener('resize', windowResize);
 windowResize();
@@ -40,9 +50,6 @@ function windowScroll(ev) {
 	var newActive = null,
 		oldActive = document.querySelector('.splash.active');
 
-	if (oldActive !== null) {
-		oldActive.classList.remove('active');
-	}
 	if (scrollTop < WINDOW_HEIGHT) {
 		newActive = cover;
 		history.replaceState({}, '', '/');
@@ -57,11 +64,13 @@ function windowScroll(ev) {
 		history.replaceState({}, '', '#contact');
 	}
 
-	if (newActive === oldActive) {
-		return;
-	}
-	if (newActive !== null) {
-		newActive.classList.add('active');
+	if (newActive !== oldActive) {
+		if (oldActive !== null) {
+			oldActive.classList.remove('active');
+		}
+		if (newActive !== null) {
+			newActive.classList.add('active');
+		}
 	}
 
 	// Do Team things
@@ -123,6 +132,32 @@ function windowScroll(ev) {
 				setAnimPosition(teamNames[i], ANIM.team[i][ANIM.team[i].length - 1], 1);
 			}
 		}
+	}
+
+	// Do Media things
+	if (newActive === media) {
+		var border = WINDOW_HEIGHT + TEAM_HEIGHT + HALF_WINDOW_HEIGHT;
+		if (scrollTop < border) {
+			mediaHeader.style.opacity = 1;
+			mediaHeader.style.top = mediaHeaderY.active+'px';
+		} else {
+			var opacity = 1 - ((scrollTop - border) / HALF_WINDOW_HEIGHT);
+			mediaHeader.style.opacity = opacity;
+			mediaHeader.style.top = mediaHeaderY.min - ((mediaHeaderY.min - mediaHeaderY.active) * opacity)+'px';
+		}
+	} else if (newActive === cover || newActive === team) {
+		var border = (WINDOW_HEIGHT + TEAM_HEIGHT) - HALF_WINDOW_HEIGHT;
+		if (scrollTop > border) {
+			var opacity = (scrollTop - border) / HALF_WINDOW_HEIGHT;
+			mediaHeader.style.opacity = opacity;
+			mediaHeader.style.top = mediaHeaderY.max - ((mediaHeaderY.max - mediaHeaderY.active) * opacity)+'px';
+		} else {
+			mediaHeader.style.opacity = 0;
+			mediaHeader.style.top = mediaHeaderY.min+'px';
+		}
+	} else {
+		mediaHeader.style.opacity = 0;
+		mediaHeader.style.top = mediaHeaderY.min+'px';
 	}
 }
 window.addEventListener('scroll', windowScroll);

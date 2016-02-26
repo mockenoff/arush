@@ -108,7 +108,8 @@ function windowScroll(ev) {
 		var didSet = false,
 			teamLength = ANIM.team.length,
 			percentage = (TEAM_HEIGHT / (teamLength + 1)) / TEAM_HEIGHT,
-			relativeTop = (scrollTop - WINDOW_HEIGHT) / (TEAM_HEIGHT - WINDOW_HEIGHT);
+			// Change to TEAM_HEIGHT - WINDOW_HEIGHT if Team section is the bottom
+			relativeTop = (scrollTop - WINDOW_HEIGHT) / TEAM_HEIGHT;
 
 		if (relativeTop < percentage * teamLength) {
 			teamHeader.style.opacity = 1;

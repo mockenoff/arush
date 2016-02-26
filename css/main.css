@@ -25,7 +25,11 @@ body {
 	line-height: 150%;
 	position: relative;
 	background: #1E2633;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', serif;
 }
 
 /*
@@ -86,7 +90,9 @@ body {
 	}
 	.splash h2 {
 		left: 0;
+		top: 150%;
 		width: 100%;
+		font-size: 4em;
 		position: fixed;
 		text-align: center;
 	}

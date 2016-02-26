@@ -28,14 +28,22 @@ var nav = document.querySelector('#nav'),
 	WINDOW_WIDTH = 0,
 	WINDOW_HEIGHT = 0,
 	HALF_WINDOW_HEIGHT = 0,
-	TEAM_HEIGHT = team.clientHeight;
+	COVER_HEIGHT = cover.clientHeight,
+	TEAM_HEIGHT = team.clientHeight,
+	MEDIA_HEIGHT = media.clientHeight,
+	CONTACT_HEIGHT = contact.clientHeight;
 
 function windowResize(ev) {
 	WINDOW_WIDTH = window.innerWidth;
 	WINDOW_HEIGHT = window.innerHeight;
 	HALF_WINDOW_HEIGHT = WINDOW_HEIGHT / 2;
+
 	teamHeaderY.max = WINDOW_HEIGHT + Math.abs(teamHeaderY.min);
 	mediaHeaderY.max = WINDOW_HEIGHT + Math.abs(mediaHeaderY.min);
+
+	COVER_HEIGHT = WINDOW_HEIGHT;
+	MEDIA_HEIGHT = media.clientHeight;
+	CONTACT_HEIGHT = contact.clientHeight;
 }
 window.addEventListener('resize', windowResize);
 windowResize();
@@ -44,22 +52,22 @@ function windowScroll(ev) {
 	var scrollTop = ev === undefined ? window.scrollY : ev.target.scrollingElement.scrollTop;
 
 	// Set nav opacity
-	nav.style.opacity = Math.min(1, scrollTop / WINDOW_HEIGHT);
+	nav.style.opacity = Math.min(1, scrollTop / COVER_HEIGHT);
 
 	// Determine what is the active section
 	var newActive = null,
 		oldActive = document.querySelector('.splash.active');
 
-	if (scrollTop < WINDOW_HEIGHT) {
+	if (scrollTop < COVER_HEIGHT) {
 		newActive = cover;
 		history.replaceState({}, '', '/');
-	} else if (scrollTop >= WINDOW_HEIGHT && scrollTop < WINDOW_HEIGHT + TEAM_HEIGHT) {
+	} else if (scrollTop >= COVER_HEIGHT && scrollTop < COVER_HEIGHT + TEAM_HEIGHT) {
 		newActive = team;
 		history.replaceState({}, '', '#team');
-	} else if (scrollTop >= WINDOW_HEIGHT + TEAM_HEIGHT && scrollTop < (WINDOW_HEIGHT * 2) + TEAM_HEIGHT) {
+	} else if (scrollTop >= COVER_HEIGHT + TEAM_HEIGHT && scrollTop < COVER_HEIGHT + TEAM_HEIGHT + MEDIA_HEIGHT) {
 		newActive = media;
 		history.replaceState({}, '', '#media');
-	} else if (scrollTop >= (WINDOW_HEIGHT * 2) + TEAM_HEIGHT && scrollTop < (WINDOW_HEIGHT * 3) + TEAM_HEIGHT) {
+	} else if (scrollTop >= COVER_HEIGHT + TEAM_HEIGHT + MEDIA_HEIGHT && scrollTop < COVER_HEIGHT + TEAM_HEIGHT + MEDIA_HEIGHT + CONTACT_HEIGHT) {
 		newActive = contact;
 		history.replaceState({}, '', '#contact');
 	}

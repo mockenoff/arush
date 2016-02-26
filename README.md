@@ -9,5 +9,5 @@ Probably gonna use Gulp or something for a build process.
 Just running a command line Python server would be simplest.
 
 ```
-$ python -m SimpleHTTPServer 8000
+$ python -m http.server 8000
 ```

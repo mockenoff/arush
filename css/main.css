@@ -33,6 +33,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
+	RESPONSIVE IFRAME
+*/
+.embed-container {
+	height: 0 !important;
+	position: relative;
+	padding-bottom: 56.25% !important;
+	overflow: hidden;
+	max-width: 100%;
+}
+	.embed-container iframe,
+	.embed-container object,
+	.embed-container embed {
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		width: 100% !important;
+		height: 100% !important;
+	}
+
+/*
 	NAV
 */
 #nav {
@@ -146,8 +166,41 @@ h1, h2, h3, h4, h5, h6 {
 	MEDIA
 */
 #media {
-	background: rgba(255, 255, 255, 0.5);
+	height: auto;
+	min-height: 100%;
+	background: #000208;
 }
+	#media .embed-container {
+		width: calc(100% - 20px);
+		margin: 30px auto 0 auto;
+	}
+.gram-feed {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(100% - 20px);
+	margin: 180px auto 0 auto;
+}
+	.gram-feed a {
+		display: block;
+		-webkit-filter: saturate(40%);
+		-moz-filter: saturate(40%);
+		-o-filter: saturate(40%);
+		filter: saturate(40%);
+		transition: all 0.2s ease-out;
+	}
+		.gram-feed a:hover, .gram-feed a:focus {
+			-webkit-filter: saturate(100%);
+			-moz-filter: saturate(100%);
+			-o-filter: saturate(100%);
+			filter: saturate(100%);
+		}
+	.gram-feed img {
+		width: 100%;
+	}
+	.gram-feed li:nth-child(3n+2) {
+		padding: 0 10px;
+	}
 
 /*
 	ANIMATIONS

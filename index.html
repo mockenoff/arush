@@ -75,25 +75,21 @@
 
 	<section class="splash media" id="media">
 		<h2>We look</h2>
-		<ul class="gram-feed">
-			<li><a href="https://www.instagram.com/p/BCPmmbstXGn/">
-				<img src="https://scontent.cdninstagram.com/t51.2885-15/e35/12729621_1114827078541415_884872338_n.jpg?ig_cache_key=MTE5MzM0MjE5MzEyNTEyNjU2Nw%3D%3D.2" />
-			</a></li>
-			<li><a href="https://www.instagram.com/p/BCPmmbstXGn/">
-				<img src="https://scontent.cdninstagram.com/t51.2885-15/e35/12729621_1114827078541415_884872338_n.jpg?ig_cache_key=MTE5MzM0MjE5MzEyNTEyNjU2Nw%3D%3D.2" />
-			</a></li>
-			<li><a href="https://www.instagram.com/p/BCPmmbstXGn/">
-				<img src="https://scontent.cdninstagram.com/t51.2885-15/e35/12729621_1114827078541415_884872338_n.jpg?ig_cache_key=MTE5MzM0MjE5MzEyNTEyNjU2Nw%3D%3D.2" />
-			</a></li>
-		</ul>
-		<div class="embed-container">
-			<iframe src="http://www.youtube.com/embed/UFnqtlpqP4A?showinfo=0" frameborder="0" width="640" height="360"></iframe>
-		</div>
+		<ul class="gram-feed"></ul>
+		<div class="embed-container"></div>
 	</section>
 
 	<section class="splash contact" id="contact">
 		<h2>We talk</h2>
 	</section>
+
+	<script type="text/template" id="gram-template">
+		<li><a href="{{link}}"><img src="{{image}}" /></a></li>
+	</script>
+
+	<script type="text/template" id="tube-template">
+		<iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0" frameborder="0" width="640" height="360"></iframe>
+	</script>
 
 	<script src="js/feeds.js"></script>
 	<script src="js/anim.js"></script>

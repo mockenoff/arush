@@ -16,6 +16,10 @@ var nav = document.querySelector('#nav'),
 
 	// Media section
 	media = document.querySelector('#media'),
+	gramList = media.querySelector('.gram-feed'),
+	gramTemplate = document.querySelector('#gram-template').innerHTML,
+	tubeEmbed = media.querySelector('.embed-container'),
+	tubeTemplate = document.querySelector('#tube-template').innerHTML,
 	mediaHeader = media.querySelector('h2'),
 	mediaHeaderY = {
 		min: -mediaHeader.clientHeight,
@@ -33,6 +37,23 @@ var nav = document.querySelector('#nav'),
 	MEDIA_HEIGHT = media.clientHeight,
 	CONTACT_HEIGHT = contact.clientHeight;
 
+// Media templating
+var innerHTML = '';
+for (var i = 0, l = FEEDS.INSTAGRAM.length; i < l; i++) {
+	innerHTML += gramTemplate.replace('{{link}}', FEEDS.INSTAGRAM[i].link).replace('{{image}}', FEEDS.INSTAGRAM[i].image);
+}
+gramList.innerHTML = innerHTML;
+tubeEmbed.innerHTML = tubeTemplate.replace('{{youtube_id}}', FEEDS.YOUTUBE[0].youtube_id);
+
+// Make image loads count as a resize since otherwise they don't have height
+var images = gramList.querySelectorAll('img');
+for (i = 0, l = images.length; i < l; i++) {
+	images[i].addEventListener('load', function(ev) {
+		windowResize();
+	});
+}
+
+// Window resize
 function windowResize(ev) {
 	WINDOW_WIDTH = window.innerWidth;
 	WINDOW_HEIGHT = window.innerHeight;
@@ -48,6 +69,7 @@ function windowResize(ev) {
 window.addEventListener('resize', windowResize);
 windowResize();
 
+// Window scroll
 function windowScroll(ev) {
 	var scrollTop = ev === undefined ? window.scrollY : ev.target.scrollingElement.scrollTop;
 
@@ -171,6 +193,7 @@ function windowScroll(ev) {
 window.addEventListener('scroll', windowScroll);
 windowScroll();
 
+// Set the position of an element according to its percentage progress
 function setAnimPosition(elem, item, progress) {
 	var relativeTime = (progress - item.time[0]) / (item.time[1] - item.time[0]),
 		scaledDiff = [

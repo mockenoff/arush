@@ -33,12 +33,12 @@ class TubeFeed(object):
 		:type max_items: int
 
 		"""
-		if api_key and not isinstance(api_key, basestring):
+		if api_key and not isinstance(api_key, str):
 			raise TypeError('API Key must be a string')
 		else:
 			self.api_key = TubeFeed.API_KEY
 
-		if channel_id and not isinstance(channel_id, basestring):
+		if channel_id and not isinstance(channel_id, str):
 			raise TypeError('Channel ID must be a string')
 		else:
 			self.channel_id = TubeFeed.CHANNEL_ID
@@ -74,7 +74,7 @@ class TubeFeed(object):
 		return videos
 
 	def get_page(self, page_token=None):
-		if not isinstance(page_token, basestring) and page_token is not None:
+		if not isinstance(page_token, str) and page_token is not None:
 			raise TypeError('pageToken value must be a string')
 
 		url = TubeFeed.SEARCH_BASE % (self.api_key, self.channel_id)
@@ -153,7 +153,7 @@ class TubeFeed(object):
 		:returns: str
 
 		"""
-		if not isinstance(value, basestring):
+		if not isinstance(value, str):
 			raise TypeError('Value must be a string')
 
 		ret = '%s%s%s'
@@ -194,7 +194,7 @@ class GramFeed(object):
 		:type max_items: int
 
 		"""
-		if client_id and not isinstance(client_id, basestring):
+		if client_id and not isinstance(client_id, str):
 			raise TypeError('Client ID must be a string')
 		else:
 			self.client_id = GramFeed.CLIENT_ID

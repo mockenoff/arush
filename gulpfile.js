@@ -167,7 +167,7 @@ gulp.task('assets', function() {
 
 gulp.task('build', ['assets', 'inject']);
 
-gulp.task('watch', function() {
+gulp.task('watch', ['build'], function() {
 	watch(['js/*', 'css/*', 'index.html', 'images/*'], batch(function (events, done) {
 		gulp.start('build', done);
 	}));

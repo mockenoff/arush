@@ -257,3 +257,77 @@ function setAnimPosition(elem, item, progress) {
 	elem.style.left = ((item.start[0] + scaledDiff[0]) * WINDOW_WIDTH)+'px';
 	elem.style.top = ((item.start[1] + scaledDiff[1]) * WINDOW_HEIGHT)+'px';
 }
+
+// Intercept the contact form submission
+var form = contact.querySelector('.user-form'),
+	formEmail = form.querySelector('input[type="email"]'),
+	formBody = form.querySelector('textarea'),
+	formSubmit = form.querySelector('input[type="submit"]')
+	formLoader = form.querySelector('.loader'),
+	formSuccess = form.querySelector('.success');
+
+formEmail.addEventListener('focus', function(ev) {
+	formSuccess.classList.remove('flash');
+});
+
+formEmail.addEventListener('blur', function(ev) {
+	if (formEmail.checkValidity() === true) {
+		formEmail.classList.remove('error');
+	}
+});
+
+formBody.addEventListener('focus', function(ev) {
+	formSuccess.classList.remove('flash');
+});
+
+formBody.addEventListener('blur', function(ev) {
+	if (formBody.checkValidity() === true) {
+		formBody.classList.remove('error');
+	}
+});
+
+form.addEventListener('submit', function(ev) {
+	ev.preventDefault();
+
+	var submit = true;
+	formSuccess.classList.remove('flash');
+
+	if (formEmail.checkValidity() === false) {
+		submit = false;
+		formEmail.classList.add('error');
+	} else {
+		formEmail.classList.remove('error');
+	}
+
+	if (formBody.checkValidity() === false) {
+		submit = false;
+		formBody.classList.add('error');
+	} else {
+		formBody.classList.remove('error');
+	}
+
+	if (submit === true) {
+		formEmail.disabled = true;
+		formBody.disabled = true;
+		formSubmit.disabled = true;
+		formLoader.classList.add('show');
+
+		reqwest({
+			url: 'http://local.arushdball.com:5000/contact/',
+			method:'POST',
+			data: {
+				email: formEmail.value,
+				body: formBody.value,
+			},
+		}).then(function(resp) {
+			formEmail.value = '';
+			formBody.value = '';
+			formSuccess.classList.add('flash');
+		}).always(function(resp) {
+			formEmail.disabled = false;
+			formBody.disabled = false;
+			formSubmit.disabled = false;
+			formLoader.classList.remove('show');
+		});
+	}
+});

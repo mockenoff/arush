@@ -219,7 +219,7 @@ h1, h2, h3, h4, h5, h6 {
 */
 .contact-wrapper {
 	display: flex;
-	width: calc(100% - 20px);
+	width: calc(100% - 40px);
 	margin: 190px auto 0 auto;
 }
 	.contact-wrapper a {
@@ -246,7 +246,7 @@ h1, h2, h3, h4, h5, h6 {
 .social p {
 	font-size: 1.3em;
 	line-height: 150%;
-	padding: 24px 15px 0 0;
+	padding: 0 15px 24px 0;
 	color: rgba(255, 255, 255, 0.7);
 }
 .social li {
@@ -258,6 +258,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	.social li img {
 		width: 10%;
+		max-width: 40px;
 		margin-right: 10px;
 		vertical-align: middle;
 		transition: all 0.2s ease-out;
@@ -268,6 +269,7 @@ h1, h2, h3, h4, h5, h6 {
 .user-form {
 	display: flex;
 	line-height: 0;
+	position: relative;
 	flex-direction: column;
 }
 	.user-form input, .user-form textarea {
@@ -282,9 +284,19 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	.user-form input[type="email"], .user-form textarea {
 		color: #EEE;
+		position: relative;
 		transition: all 0.15s ease-out;
 		background: rgba(255, 255, 255, 0.2);
 	}
+		.user-form input[type="email"]:disabled, .user-form textarea:disabled {
+			color: #888;
+			background: rgba(255, 255, 255, 0.1);
+		}
+		.user-form input[type="email"].error, .user-form textarea.error {
+			animation-name: shake;
+			animation-duration: 0.3s;
+			background: rgba(255, 100, 100, 0.2);
+		}
 		.user-form input[type="email"]:focus, .user-form textarea:focus {
 			background: rgba(255, 255, 255, 0.4);
 		}
@@ -301,11 +313,34 @@ h1, h2, h3, h4, h5, h6 {
 		background: rgba(255, 255, 255, 0.65);
 		transition: all 0.15s ease-out;
 	}
+		.user-form input[type="submit"]:disabled {
+			text-shadow: 1px 1px 1px #AAA;
+			background: rgba(255, 255, 255, 0.45);
+		}
 		.user-form input[type="submit"]:hover, .user-form input[type="submit"]:focus {
 			background: rgba(255, 255, 255, 0.8);
 		}
 		.user-form input[type="submit"]:active {
 			background: rgba(255, 255, 255, 0.9);
+		}
+	.user-form .status {
+		opacity: 0;
+		width: 30px;
+		right: 10px;
+		bottom: 18px;
+		position: absolute;
+		pointer-events: none;
+		transition: all 0.15s ease-out;
+		transform-origin: center center;
+	}
+		.user-form .status.show {
+			opacity: 1;
+		}
+		.user-form .status.flash {
+			opacity: 1;
+			transform: scale(0);
+			animation-name: flash;
+			animation-duration: 3.5s;
 		}
 
 /*
@@ -338,6 +373,49 @@ footer {
 /*
 	ANIMATIONS
 */
+@keyframes flash {
+	0% {
+		transform: scale(0);
+	}
+	5% {
+		transform: scale(1.3);
+	}
+	10% {
+		transform: scale(1);
+	}
+	90% {
+		transform: scale(1);
+	}
+	95% {
+		transform: scale(1.3);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+@keyframes shake {
+	0% {
+		left: 0;
+	}
+	50% {
+		left: 10px;
+	}
+	75% {
+		left: -5px;
+	}
+	88% {
+		left: 3px;
+	}
+	94% {
+		left: -2px;
+	}
+	97% {
+		left: 1px;
+	}
+	100% {
+		left: 0;
+	}
+}
 @keyframes pendulum {
 	0% {
 		transform: rotate(-180deg);

@@ -83,19 +83,21 @@
 		<h2>We talk</h2>
 		<div class="contact-wrapper">
 			<ul class="social contact-item">
-				<li><a href="https://twitter.com/arushdball"><img src="images/twitter.png" /> Tweets are p chill</a></li>
-				<li><a href="https://www.instagram.com/arushdball/"><img src="images/instagram.png" /> Most fire grams</a></li>
-				<li><a href="https://www.facebook.com/arushdball/"><img src="images/facebook.png" /> Realest friendship</a></li>
-				<li><a href="https://www.youtube.com/user/arushdball/"><img src="images/youtube.png" /> Always Be Tubing</a></li>
 				<li>
 					<p>We are from Dallas, Texas.</p>
 					<p>Come find us and we'll take you somewhere we can pump each other full of barbecue and tacos.</p>
 				</li>
+				<li><a href="https://twitter.com/arushdball"><img src="images/twitter.png" /> Tweets are p chill</a></li>
+				<li><a href="https://www.instagram.com/arushdball/"><img src="images/instagram.png" /> Most fire grams</a></li>
+				<li><a href="https://www.facebook.com/arushdball/"><img src="images/facebook.png" /> Realest friendship</a></li>
+				<li><a href="https://www.youtube.com/user/arushdball/"><img src="images/youtube.png" /> Always Be Tubing</a></li>
 			</ul>
 			<form class="contact-item user-form">
-				<input type="email" placeholder="Your email address" />
-				<textarea placeholder="Your hopes and dreams"></textarea>
+				<input type="email" placeholder="Your email address" required />
+				<textarea placeholder="Your hopes and dreams" required></textarea>
 				<input type="submit" value="Touch Our Base" />
+				<img src="images/loader.gif" class="status loader" />
+				<img src="images/check.png" class="status success"
 			</form>
 		</div>
 
@@ -112,6 +114,7 @@
 		<iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0" frameborder="0" width="{{width}}" height="{{height}}"></iframe>
 	</script>
 
+	<script src="js/reqwest.min.js"></script>
 	<script src="js/feeds.js"></script>
 	<script src="js/anim.js"></script>
 	<script src="js/main.js"></script>

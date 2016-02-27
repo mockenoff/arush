@@ -17,6 +17,7 @@ var nav = document.querySelector('#nav'),
 	// Media section
 	media = document.querySelector('#media'),
 	gramList = media.querySelector('.gram-feed'),
+	gramItems = [],
 	gramTemplate = document.querySelector('#gram-template').innerHTML,
 	tubeEmbed = media.querySelector('.embed-container'),
 	tubeTemplate = document.querySelector('#tube-template').innerHTML,
@@ -35,6 +36,8 @@ var nav = document.querySelector('#nav'),
 	COVER_HEIGHT = cover.clientHeight,
 	TEAM_HEIGHT = team.clientHeight,
 	MEDIA_HEIGHT = media.clientHeight,
+	HALF_MEDIA_HEIGHT = 0,
+	FEED_TOP = 0,
 	CONTACT_HEIGHT = contact.clientHeight;
 
 // Media templating
@@ -43,6 +46,7 @@ for (var i = 0, l = FEEDS.INSTAGRAM.length; i < l; i++) {
 	innerHTML += gramTemplate.replace('{{link}}', FEEDS.INSTAGRAM[i].link).replace('{{image}}', FEEDS.INSTAGRAM[i].image);
 }
 gramList.innerHTML = innerHTML;
+gramItems = gramList.querySelectorAll('li');
 tubeEmbed.innerHTML = tubeTemplate.replace('{{youtube_id}}', FEEDS.YOUTUBE[0].youtube_id);
 
 // Make image loads count as a resize since otherwise they don't have height
@@ -63,7 +67,11 @@ function windowResize(ev) {
 	mediaHeaderY.max = WINDOW_HEIGHT + Math.abs(mediaHeaderY.min);
 
 	COVER_HEIGHT = WINDOW_HEIGHT;
+
 	MEDIA_HEIGHT = media.clientHeight;
+	HALF_MEDIA_HEIGHT = MEDIA_HEIGHT / 2;
+	FEED_TOP = parseInt(getComputedStyle(gramList).marginTop.replace(/[\D]/g, ''), 10);
+
 	CONTACT_HEIGHT = contact.clientHeight;
 }
 window.addEventListener('resize', windowResize);
@@ -167,24 +175,38 @@ function windowScroll(ev) {
 
 	// Do Media things
 	if (newActive === media) {
-		var border = WINDOW_HEIGHT + TEAM_HEIGHT + HALF_WINDOW_HEIGHT;
-		if (scrollTop < border) {
+		var mediaBorder = COVER_HEIGHT + TEAM_HEIGHT,
+			relativeTop = (scrollTop - mediaBorder) / MEDIA_HEIGHT,
+			scrollBorder = mediaBorder + HALF_MEDIA_HEIGHT;
+
+		if (scrollTop < scrollBorder) {
 			mediaHeader.style.opacity = 1;
 			mediaHeader.style.top = mediaHeaderY.active+'px';
 		} else {
-			var opacity = 1 - ((scrollTop - border) / HALF_WINDOW_HEIGHT);
+			var opacity = 1 - ((scrollTop - scrollBorder) / HALF_MEDIA_HEIGHT);
 			mediaHeader.style.opacity = opacity;
 			mediaHeader.style.top = mediaHeaderY.min - ((mediaHeaderY.min - mediaHeaderY.active) * opacity)+'px';
 		}
+
+		for (var i = 0, l = gramItems.length; i < l; i++) {
+			gramItems[i].style.top = ((-1 / ((i + 1) * 2)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+		}
 	} else if (newActive === cover || newActive === team) {
-		var border = (WINDOW_HEIGHT + TEAM_HEIGHT) - HALF_WINDOW_HEIGHT;
-		if (scrollTop > border) {
-			var opacity = (scrollTop - border) / HALF_WINDOW_HEIGHT;
+		var mediaBorder = COVER_HEIGHT + TEAM_HEIGHT,
+			relativeTop = (scrollTop - mediaBorder) / MEDIA_HEIGHT,
+			scrollBorder = mediaBorder - HALF_MEDIA_HEIGHT;
+
+		if (scrollTop > scrollBorder) {
+			var opacity = (scrollTop - scrollBorder) / HALF_MEDIA_HEIGHT;
 			mediaHeader.style.opacity = opacity;
 			mediaHeader.style.top = mediaHeaderY.max - ((mediaHeaderY.max - mediaHeaderY.active) * opacity)+'px';
 		} else {
 			mediaHeader.style.opacity = 0;
 			mediaHeader.style.top = mediaHeaderY.min+'px';
+		}
+
+		for (var i = 0, l = gramItems.length; i < l; i++) {
+			gramItems[i].style.top = ((-1 / ((i + 1) * 2)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
 		}
 	} else {
 		mediaHeader.style.opacity = 0;

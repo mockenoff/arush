@@ -1,6 +1,5 @@
 var nav = document.querySelector('#nav'),
 	cover = document.querySelector('#cover'),
-	contact = document.querySelector('#contact'),
 
 	// Team section
 	team = document.querySelector('#team'),
@@ -29,6 +28,16 @@ var nav = document.querySelector('#nav'),
 		current: 0,
 	},
 
+	// Team section
+	contact = document.querySelector('#contact'),
+	contactHeader = contact.querySelector('h2'),
+	contactHeaderY = {
+		min: -contactHeader.clientHeight,
+		max: 0,
+		active: 100,
+		current: 0,
+	},
+
 	// Display calculation constants
 	WINDOW_WIDTH = 0,
 	WINDOW_HEIGHT = 0,
@@ -38,7 +47,8 @@ var nav = document.querySelector('#nav'),
 	MEDIA_HEIGHT = media.clientHeight,
 	HALF_MEDIA_HEIGHT = 0,
 	FEED_TOP = 0,
-	CONTACT_HEIGHT = contact.clientHeight;
+	CONTACT_HEIGHT = contact.clientHeight,
+	HALF_CONTACT_HEIGHT = 0;
 
 // Media templating
 var innerHTML = '';
@@ -65,6 +75,7 @@ function windowResize(ev) {
 
 	teamHeaderY.max = WINDOW_HEIGHT + Math.abs(teamHeaderY.min);
 	mediaHeaderY.max = WINDOW_HEIGHT + Math.abs(mediaHeaderY.min);
+	contactHeaderY.max = WINDOW_HEIGHT + Math.abs(contactHeaderY.min);
 
 	COVER_HEIGHT = WINDOW_HEIGHT;
 
@@ -73,6 +84,7 @@ function windowResize(ev) {
 	FEED_TOP = parseInt(getComputedStyle(gramList).marginTop.replace(/[\D]/g, ''), 10);
 
 	CONTACT_HEIGHT = contact.clientHeight;
+	HALF_CONTACT_HEIGHT = CONTACT_HEIGHT / 2;
 }
 window.addEventListener('resize', windowResize);
 windowResize();
@@ -211,6 +223,25 @@ function windowScroll(ev) {
 	} else {
 		mediaHeader.style.opacity = 0;
 		mediaHeader.style.top = mediaHeaderY.min+'px';
+	}
+
+	// Do Contact things
+	if (newActive === contact) {
+		contactHeader.style.opacity = 1;
+		contactHeader.style.top = contactHeaderY.active+'px';
+	} else if (newActive === media) {
+		var scrollBorder = COVER_HEIGHT + TEAM_HEIGHT + MEDIA_HEIGHT - HALF_CONTACT_HEIGHT;
+		if (scrollTop > scrollBorder) {
+			var opacity = (scrollTop - scrollBorder) / HALF_CONTACT_HEIGHT;
+			contactHeader.style.opacity = opacity;
+			contactHeader.style.top = contactHeaderY.max - ((contactHeaderY.max - contactHeaderY.active) * opacity)+'px';
+		} else {
+			contactHeader.style.opacity = 0;
+			contactHeader.style.top = contactHeaderY.min+'px';
+		}
+	} else {
+		contactHeader.style.opacity = 0;
+		contactHeader.style.top = contactHeaderY.min+'px';
 	}
 }
 window.addEventListener('scroll', windowScroll);

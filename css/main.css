@@ -83,14 +83,14 @@ h1, h2, h3, h4, h5, h6 {
 		height: 100%;
 		line-height: 250%;
 		display: inline-block;
-		color: rgba(255, 255, 255, 0.2);
+		color: rgba(255, 255, 255, 0.5);
 		transition: color 0.2s ease-out;
 	}
 		#nav a:hover, #nav a:focus {
-			color: rgba(255, 255, 255, 0.5);
+			color: rgba(255, 255, 255, 0.8);
 		}
 		#nav a:active {
-			color: rgba(255, 255, 255, 0.8);
+			color: rgba(255, 255, 255, 1);
 		}
 
 /*
@@ -116,6 +116,7 @@ h1, h2, h3, h4, h5, h6 {
 		font-size: 4em;
 		position: fixed;
 		text-align: center;
+		pointer-events: none;
 		text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
 	}
 	.splash.cover {
@@ -148,6 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 22em;
 	line-height: 52%;
 	text-shadow: none;
+	pointer-events: none;
 	letter-spacing: -0.1em;
 	color: rgba(255, 255, 255, 0.05);
 	transition: opacity 0.5s ease-out;
@@ -211,6 +213,41 @@ h1, h2, h3, h4, h5, h6 {
 		.gram-feed li:nth-child(3n+2) {
 			padding: 0 10px 10px 10px;
 		}
+
+/*
+	CONTACT
+*/
+.contact-wrapper {
+	display: flex;
+	width: calc(100% - 20px);
+	margin: 190px auto 0 auto;
+}
+.contact-item {
+	flex-basis: 50%;
+}
+
+/*
+	FOOTER
+*/
+footer {
+	width: 100%;
+	padding: 8px 0;
+	min-height: 40px;
+	line-height: 150%;
+	text-align: center;
+	box-sizing: border-box;
+	color: rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.1);
+}
+	footer a {
+		color: rgba(255, 255, 255, 0.5);
+	}
+	footer a:hover, footer a:focus {
+		color: rgba(255, 255, 255, 0.8);
+	}
+	footer a:active {
+		color: rgba(255, 255, 255, 1);
+	}
 
 /*
 	ANIMATIONS

@@ -83,29 +83,33 @@
 		<h2>We talk</h2>
 		<div class="contact-wrapper">
 			<ul class="social contact-item">
-				<li><a href="https://twitter.com/arushdball">Twitter</a></li>
-				<li><a href="https://www.instagram.com/arushdball/">Instagram</a></li>
-				<li><a href="https://www.facebook.com/arushdball/">Facebook</a></li>
-				<li><a href="https://www.youtube.com/user/arushdball/">YouTube</a></li>
+				<li><a href="https://twitter.com/arushdball"><img src="images/twitter.png" /> Tweets are p chill</a></li>
+				<li><a href="https://www.instagram.com/arushdball/"><img src="images/instagram.png" /> Most fire grams</a></li>
+				<li><a href="https://www.facebook.com/arushdball/"><img src="images/facebook.png" /> Realest friendship</a></li>
+				<li><a href="https://www.youtube.com/user/arushdball/"><img src="images/youtube.png" /> Always Be Tubing</a></li>
+				<li>
+					<p>We are from Dallas, Texas.</p>
+					<p>Come find us and we'll take you somewhere we can pump each other full of barbecue and tacos.</p>
+				</li>
 			</ul>
-			<form class="contact-item">
-				<input type="email" placeholder="Your Email Address" />
-				<textarea placeholder="Your Message"></textarea>
+			<form class="contact-item user-form">
+				<input type="email" placeholder="Your email address" />
+				<textarea placeholder="Your hopes and dreams"></textarea>
 				<input type="submit" value="Touch Our Base" />
 			</form>
 		</div>
-	</section>
 
-	<footer>
-		© Adrenaline Rush 2016. Designed and developed by <a href="http://timothypoon.com/">Tim Poon</a>. Identity by <a href="http://www.kimfullery.com/">Kim Fuller</a>.
-	</footer>
+		<footer>
+			© Adrenaline Rush 2016. Made by <a href="http://timothypoon.com/">Tim Poon</a>. Identity by <a href="http://www.kimfullery.com/">Kim Fuller</a>.
+		</footer>
+	</section>
 
 	<script type="text/template" id="gram-template">
 		<li><a href="{{link}}"><img src="{{image}}" /></a></li>
 	</script>
 
 	<script type="text/template" id="tube-template">
-		<iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0" frameborder="0" width="640" height="360"></iframe>
+		<iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0" frameborder="0" width="{{width}}" height="{{height}}"></iframe>
 	</script>
 
 	<script src="js/feeds.js"></script>

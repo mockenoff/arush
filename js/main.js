@@ -39,7 +39,7 @@ var nav = document.querySelector('#nav'),
 	},
 
 	// Display calculation constants
-	WINDOW_WIDTH = 0,
+	WINDOW_WIDTH = window.innerWidth,
 	WINDOW_HEIGHT = 0,
 	HALF_WINDOW_HEIGHT = 0,
 	COVER_HEIGHT = cover.clientHeight,
@@ -57,7 +57,7 @@ for (var i = 0, l = FEEDS.INSTAGRAM.length; i < l; i++) {
 }
 gramList.innerHTML = innerHTML;
 gramItems = gramList.querySelectorAll('li');
-tubeEmbed.innerHTML = tubeTemplate.replace('{{youtube_id}}', FEEDS.YOUTUBE[0].youtube_id);
+tubeEmbed.innerHTML = tubeTemplate.replace('{{youtube_id}}', FEEDS.YOUTUBE[0].youtube_id).replace('{{width}}', WINDOW_WIDTH).replace('{{height}}', (WINDOW_WIDTH * .5625));
 
 // Make image loads count as a resize since otherwise they don't have height
 var images = gramList.querySelectorAll('img');

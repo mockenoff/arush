@@ -2,7 +2,7 @@
 	RESET
 */
 html, body, img, form, input, header, nav, div,
-ol, ul, li, h1, h2, h3, h4, span, p, a,
+ol, ul, li, h1, h2, h3, h4, span, p, a, textarea,
 table, thead, tbody, tr, th, td, figure, figcaption {
 	border: 0;
 	padding: 0;
@@ -171,7 +171,7 @@ h1, h2, h3, h4, h5, h6 {
 #media {
 	height: auto;
 	min-height: 100%;
-	background: #000208;
+	background: #171F2D;
 }
 	#media .embed-container {
 		width: calc(100% - 20px);
@@ -222,18 +222,103 @@ h1, h2, h3, h4, h5, h6 {
 	width: calc(100% - 20px);
 	margin: 190px auto 0 auto;
 }
+	.contact-wrapper a {
+		color: rgba(255, 255, 255, 0.5);
+		-webkit-filter: saturate(40%);
+		-moz-filter: saturate(40%);
+		-o-filter: saturate(40%);
+		filter: saturate(40%);
+		transition: all 0.2s ease-out;
+	}
+	.contact-wrapper a:hover, .contact-wrapper a:focus {
+		color: rgba(255, 255, 255, 0.8);
+		-webkit-filter: saturate(100%);
+		-moz-filter: saturate(100%);
+		-o-filter: saturate(100%);
+		filter: saturate(100%);
+	}
+	.contact-wrapper a:active {
+		color: rgba(255, 255, 255, 1);
+	}
 .contact-item {
 	flex-basis: 50%;
 }
+.social p {
+	font-size: 1.3em;
+	line-height: 150%;
+	padding: 24px 15px 0 0;
+	color: rgba(255, 255, 255, 0.7);
+}
+.social li {
+	margin-bottom: 10px;
+}
+	.social li a {
+		width: 100%;
+		display: inline-block;
+	}
+	.social li img {
+		width: 10%;
+		margin-right: 10px;
+		vertical-align: middle;
+		transition: all 0.2s ease-out;
+	}
+		.social li a:hover img, .social li a:focus img {
+			margin-left: 10px;
+		}
+.user-form {
+	display: flex;
+	line-height: 0;
+	flex-direction: column;
+}
+	.user-form input, .user-form textarea {
+		width: 100%;
+		font-size: 1.3em;
+		line-height: 130%;
+		padding: 10px 20px;
+		border-radius: 3px;
+		margin-bottom: 10px;
+		box-sizing: border-box;
+		font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+	}
+	.user-form input[type="email"], .user-form textarea {
+		color: #EEE;
+		transition: all 0.15s ease-out;
+		background: rgba(255, 255, 255, 0.2);
+	}
+		.user-form input[type="email"]:focus, .user-form textarea:focus {
+			background: rgba(255, 255, 255, 0.4);
+		}
+	.user-form textarea {
+		flex-grow: 1;
+		min-height: 150px;
+	}
+	.user-form input[type="submit"] {
+		color: #1E2633;
+		cursor: pointer;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px #FFFFFF;
+		font-family: 'Montserrat', serif;
+		background: rgba(255, 255, 255, 0.65);
+		transition: all 0.15s ease-out;
+	}
+		.user-form input[type="submit"]:hover, .user-form input[type="submit"]:focus {
+			background: rgba(255, 255, 255, 0.8);
+		}
+		.user-form input[type="submit"]:active {
+			background: rgba(255, 255, 255, 0.9);
+		}
 
 /*
 	FOOTER
 */
 footer {
+	left: 0;
+	bottom: 0;
 	width: 100%;
 	padding: 8px 0;
 	min-height: 40px;
 	line-height: 150%;
+	position: absolute;
 	text-align: center;
 	box-sizing: border-box;
 	color: rgba(255, 255, 255, 0.2);
@@ -241,6 +326,7 @@ footer {
 }
 	footer a {
 		color: rgba(255, 255, 255, 0.5);
+		transition: color 0.2s ease-out;
 	}
 	footer a:hover, footer a:focus {
 		color: rgba(255, 255, 255, 0.8);

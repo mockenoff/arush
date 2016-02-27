@@ -92,6 +92,8 @@ function windowResize(ev) {
 
 	CONTACT_HEIGHT = contact.clientHeight;
 	HALF_CONTACT_HEIGHT = CONTACT_HEIGHT / 2;
+
+	windowScroll();
 }
 window.addEventListener('resize', windowResize);
 windowResize();

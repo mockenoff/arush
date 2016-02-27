@@ -1,17 +1,18 @@
-var gulp = require('gulp');
-var iife = require("gulp-iife");
-var gulpif = require('gulp-if');
-var concat = require('gulp-concat');
-var uglify = require("gulp-uglify");
-var cssnano = require('gulp-cssnano');
-var replace = require('gulp-replace-task');
+var gulp = require('gulp'),
+	iife = require('gulp-iife'),
+	gulpif = require('gulp-if'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify'),
+	cssnano = require('gulp-cssnano'),
+	inject = require('gulp-simple-inject'),
+	replace = require('gulp-replace-task'),
 
-var minimist = require('minimist');
+	minimist = require('minimist'),
 
-var options = minimist(process.argv.slice(2), {
-	string: 'env',
-	default: { env: process.env.NODE_ENV || 'production' }
-});
+	options = minimist(process.argv.slice(2), {
+		string: 'env',
+		default: { env: process.env.NODE_ENV || 'production' }
+	});
 
 gulp.task('templates', function() {
 	var replacements = {
@@ -95,29 +96,29 @@ gulp.task('templates', function() {
 			{
 				match: 'jsonLd',
 				replacement: JSON.stringify([{
-					"@context": "http://schema.org",
-					"@id": "#amt-organization",
-					"@type": "Organization",
-					"name": replacements.name,
-					"description": replacements.description,
-					"logo":[{
-						"@type": "ImageObject",
-						"name": replacements.name,
-						"text": replacements.name,
-						"url": replacements.image.url,
-						"contentUrl": replacements.image.url,
-						"encodingFormat": replacements.image.type
+					'@context': 'http://schema.org',
+					'@id': '#amt-organization',
+					'@type': 'Organization',
+					'name': replacements.name,
+					'description': replacements.description,
+					'logo': [{
+						'@type': 'ImageObject',
+						'name': replacements.name,
+						'text': replacements.name,
+						'url': replacements.image.url,
+						'contentUrl': replacements.image.url,
+						'encodingFormat': replacements.image.type
 					}],
-					"url": replacements.url,
-					"sameAs": replacements.sameAs,
-					"mainEntityOfPage": replacements.url,
+					'url': replacements.url,
+					'sameAs': replacements.sameAs,
+					'mainEntityOfPage': replacements.url,
 				}, {
-					"@context": "http://schema.org",
-					"@id": "#amt-website",
-					"@type": "WebSite",
-					"name": replacements.title,
-					"headline": replacements.title,
-					"url": replacements.url,
+					'@context': 'http://schema.org',
+					'@id': '#amt-website',
+					'@type': 'WebSite',
+					'name': replacements.title,
+					'headline': replacements.title,
+					'url': replacements.url,
 				}]),
 			},
 		],
@@ -141,6 +142,19 @@ gulp.task('styles', function() {
 		.pipe(gulpif(options.env === 'production', cssnano()))
 		.pipe(gulp.dest('build/'));
 });
+
+gulp.task('inject', ['templates', 'scripts', 'styles'], function() {
+	return gulp.src(['build/index.html', 'build/*.js', 'build/*.css'])
+		.pipe(inject({cwd:'build/'}))
+		.pipe(gulp.dest('build/'));
+});
+
+gulp.task('assets', function() {
+	return gulp.src('images/*')
+		.pipe(gulp.dest('build/images/'));
+});
+
+gulp.task('build', ['assets', 'inject']);
 
 gulp.task('default', function() {
 	console.log(options);

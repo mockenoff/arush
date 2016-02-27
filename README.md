@@ -22,7 +22,26 @@ If you pass in `--env local`, then it'll avoid minifying the JavaScript and CSS 
 
 ## Local Development
 
-Just running a command line Python server would be simplest.
+You're going to need to install all of the dependencies first.
+
+```
+$ pip install -r requirements.txt
+$ npm install
+```
+
+The `watch` Gulp task is pretty handy for local development. It'll monitor for file changes and build when necessary.
+
+```
+$ gulp watch --env local
+```
+
+For the API endpoints (really just `/contact/`), you can just let Flask do its barebones thing.
+
+```
+$ python lib/api.py
+```
+
+Now to serve the build files. Just running a command line Python server would be simplest.
 
 ```
 $ cd build/

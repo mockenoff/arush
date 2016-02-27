@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
 	iife = require('gulp-iife'),
 	gulpif = require('gulp-if'),
+	batch = require('gulp-batch'),
+	watch = require('gulp-watch'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
 	cssnano = require('gulp-cssnano'),
@@ -11,7 +13,7 @@ var gulp = require('gulp'),
 
 	options = minimist(process.argv.slice(2), {
 		string: 'env',
-		default: { env: process.env.NODE_ENV || 'production' }
+		default: { env: process.env.NODE_ENV || 'local' }
 	});
 
 gulp.task('templates', function() {
@@ -164,6 +166,12 @@ gulp.task('assets', function() {
 });
 
 gulp.task('build', ['assets', 'inject']);
+
+gulp.task('watch', function() {
+	watch(['js/*', 'css/*', 'index.html', 'images/*'], batch(function (events, done) {
+		gulp.start('build', done);
+	}));
+});
 
 gulp.task('default', function() {
 	console.log(options);

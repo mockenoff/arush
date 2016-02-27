@@ -1,5 +1,6 @@
 var nav = document.querySelector('#nav'),
 	cover = document.querySelector('#cover'),
+	API_URL = '@@apiUrl',
 
 	// Team section
 	team = document.querySelector('#team'),
@@ -279,7 +280,7 @@ function setAnimPosition(elem, item, progress) {
 var form = contact.querySelector('.user-form'),
 	formEmail = form.querySelector('input[type="email"]'),
 	formBody = form.querySelector('textarea'),
-	formSubmit = form.querySelector('input[type="submit"]')
+	formSubmit = form.querySelector('input[type="submit"]'),
 	formLoader = form.querySelector('.loader'),
 	formSuccess = form.querySelector('.success');
 
@@ -330,7 +331,7 @@ form.addEventListener('submit', function(ev) {
 		formLoader.classList.add('show');
 
 		reqwest({
-			url: 'http://local.arushdball.com:5000/contact/',
+			url: API_URL+'/contact/',
 			method:'POST',
 			data: {
 				email: formEmail.value,

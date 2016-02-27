@@ -126,8 +126,17 @@ gulp.task('templates', function() {
 });
 
 gulp.task('scripts', function() {
+	var API_URL = options.env === 'production' ? '' : 'http://local.arushdball.com:5000';
 	return gulp.src(['js/feeds.js', 'js/anim.js', 'js/main.js'])
 		.pipe(concat('all.js'))
+		.pipe(replace({
+			patterns: [
+				{
+					match: 'apiUrl',
+					replacement: API_URL,
+				},
+			],
+		}))
 		.pipe(iife({
 			params: ['window', 'document', 'undefined'],
 			args: ['window', 'document'],
@@ -150,8 +159,8 @@ gulp.task('inject', ['templates', 'scripts', 'styles'], function() {
 });
 
 gulp.task('assets', function() {
-	return gulp.src('images/*')
-		.pipe(gulp.dest('build/images/'));
+	gulp.src('favicon.ico').pipe(gulp.dest('build/'));
+	return gulp.src('images/*').pipe(gulp.dest('build/images/'));
 });
 
 gulp.task('build', ['assets', 'inject']);

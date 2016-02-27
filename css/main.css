@@ -232,10 +232,14 @@ h1, h2, h3, h4, h5, h6 {
 /*
 	CONTACT
 */
+#contact {
+	height: auto;
+	min-height: 100%;
+}
 .contact-wrapper {
 	display: flex;
 	width: calc(100% - 40px);
-	margin: 190px auto 0 auto;
+	margin: 190px auto 70px auto;
 }
 	.contact-wrapper a {
 		color: rgba(255, 255, 255, 0.5);
@@ -317,6 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 		}
 	.user-form textarea {
 		flex-grow: 1;
+		resize: none;
 		min-height: 150px;
 	}
 	.user-form input[type="submit"] {

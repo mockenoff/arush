@@ -76,7 +76,7 @@
 	<section class="splash media" id="media">
 		<h2>We look</h2>
 		<ul class="gram-feed"></ul>
-		<div class="embed-container"></div>
+		<ul class="tube-feed"></ul>
 	</section>
 
 	<section class="splash contact" id="contact">
@@ -111,7 +111,7 @@
 	</script>
 
 	<script type="text/template" id="tube-template">
-		<iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0" frameborder="0" width="{{width}}" height="{{height}}"></iframe>
+		<li><div class="embed-container"><iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0" frameborder="0" width="{{width}}" height="{{height}}"></iframe></div></li>
 	</script>
 
 	<script src="js/reqwest.min.js"></script>

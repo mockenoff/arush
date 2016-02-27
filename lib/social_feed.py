@@ -22,7 +22,7 @@ class TubeFeed(object):
 	SEARCH_BASE = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&key=%s&channelId=%s&maxResults=50&order=date&type=video'
 	VIDEO_BASE = 'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&key=%s&id=%s'
 
-	def __init__(self, api_key=None, channel_id=None, max_items=3):
+	def __init__(self, api_key=None, channel_id=None, max_items=2):
 		""" Initialize values
 
 		:param api_key: API Key for the YouTube API

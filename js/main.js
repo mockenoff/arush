@@ -18,7 +18,8 @@ var nav = document.querySelector('#nav'),
 	gramList = media.querySelector('.gram-feed'),
 	gramItems = [],
 	gramTemplate = document.querySelector('#gram-template').innerHTML,
-	tubeEmbed = media.querySelector('.embed-container'),
+	tubeList = media.querySelector('.tube-feed'),
+	tubeItems = [],
 	tubeTemplate = document.querySelector('#tube-template').innerHTML,
 	mediaHeader = media.querySelector('h2'),
 	mediaHeaderY = {
@@ -57,7 +58,13 @@ for (var i = 0, l = FEEDS.INSTAGRAM.length; i < l; i++) {
 }
 gramList.innerHTML = innerHTML;
 gramItems = gramList.querySelectorAll('li');
-tubeEmbed.innerHTML = tubeTemplate.replace('{{youtube_id}}', FEEDS.YOUTUBE[0].youtube_id).replace('{{width}}', WINDOW_WIDTH).replace('{{height}}', (WINDOW_WIDTH * .5625));
+
+innerHTML = '';
+for (i = 0, l = FEEDS.YOUTUBE.length; i < l; i++) {
+	innerHTML += tubeTemplate.replace('{{youtube_id}}', FEEDS.YOUTUBE[i].youtube_id).replace('{{width}}', WINDOW_WIDTH).replace('{{height}}', (WINDOW_WIDTH * .5625));
+}
+tubeList.innerHTML = innerHTML;
+tubeItems = tubeList.querySelectorAll('li');
 
 // Make image loads count as a resize since otherwise they don't have height
 var images = gramList.querySelectorAll('img');
@@ -201,7 +208,11 @@ function windowScroll(ev) {
 		}
 
 		for (var i = 0, l = gramItems.length; i < l; i++) {
-			gramItems[i].style.top = ((-1 / ((i + 1) * 2)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 4)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+		}
+
+		for (i = 0, l = tubeItems.length; i < l; i++) {
+			tubeItems[i].style.top = ((-1 / ((i + 1) * 8)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
 		}
 	} else if (newActive === cover || newActive === team) {
 		var mediaBorder = COVER_HEIGHT + TEAM_HEIGHT,
@@ -218,7 +229,11 @@ function windowScroll(ev) {
 		}
 
 		for (var i = 0, l = gramItems.length; i < l; i++) {
-			gramItems[i].style.top = ((-1 / ((i + 1) * 2)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 4)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+		}
+
+		for (i = 0, l = tubeItems.length; i < l; i++) {
+			tubeItems[i].style.top = ((-1 / ((i + 1) * 8)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
 		}
 	} else {
 		mediaHeader.style.opacity = 0;

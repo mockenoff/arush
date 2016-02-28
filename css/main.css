@@ -541,6 +541,11 @@ footer {
 		background-size: 85%;
 	}
 }
+@media (max-width: 768px) and (orientation: landscape) {
+	#team span {
+		font-size: 15em;
+	}
+}
 @media (max-width: 480px) and (orientation: portrait) {
 	#team span {
 		font-size: 12em;

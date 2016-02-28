@@ -150,6 +150,55 @@ h1, h2, h3, h4, h5, h6 {
 	box-sizing: border-box;
 	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
+	#team li:before {
+		content: '';
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		opacity: 0;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		transition: opacity 0.2s ease-out;
+	}
+		#team li:nth-child(1):before {
+			background-image: url(/images/team/chris.png);
+		}
+		#team li:nth-child(2):before {
+			background-image: url(/images/team/justin.png);
+		}
+		#team li:nth-child(3):before {
+			background-image: url(/images/team/zack.png);
+		}
+		#team li:nth-child(4):before {
+			background-image: url(/images/team/matt.png);
+		}
+		#team li:nth-child(5):before {
+			background-image: url(/images/team/troy.png);
+		}
+		#team li:nth-child(6):before {
+			background-image: url(/images/team/tim.png);
+		}
+		#team li:nth-child(7):before {
+			background-image: url(/images/team/parker.png);
+		}
+		#team li:nth-child(8):before {
+			background-image: url(/images/team/scott.png);
+		}
+		#team .active-0 li:nth-child(1):before,
+		#team .active-1 li:nth-child(2):before,
+		#team .active-2 li:nth-child(3):before,
+		#team .active-3 li:nth-child(4):before,
+		#team .active-4 li:nth-child(5):before,
+		#team .active-5 li:nth-child(6):before,
+		#team .active-6 li:nth-child(7):before,
+		#team .active-7 li:nth-child(8):before {
+			opacity: 0.07;
+		}
 #team span {
 	right: 0;
 	bottom: 0;

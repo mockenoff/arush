@@ -197,7 +197,7 @@ h1, h2, h3, h4, h5, h6 {
 		#team .active-5 li:nth-child(6):before,
 		#team .active-6 li:nth-child(7):before,
 		#team .active-7 li:nth-child(8):before {
-			opacity: 0.07;
+			opacity: 0.085;
 		}
 #team span {
 	right: 0;
@@ -250,6 +250,9 @@ h1, h2, h3, h4, h5, h6 {
 		.tube-feed li:nth-child(3n+2) {
 			padding: 0 10px 10px 10px;
 		}
+	.tube-feed .embed-container {
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+	}
 .gram-feed {
 	font-size: 0;
 	line-height: 0;
@@ -267,6 +270,7 @@ h1, h2, h3, h4, h5, h6 {
 		-o-filter: saturate(40%);
 		filter: saturate(40%);
 		transition: all 0.2s ease-out;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
 	}
 		.gram-feed a:hover, .gram-feed a:focus {
 			-webkit-filter: saturate(100%);

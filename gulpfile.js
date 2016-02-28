@@ -162,7 +162,7 @@ gulp.task('inject', ['templates', 'scripts', 'styles'], function() {
 
 gulp.task('assets', function() {
 	gulp.src('favicon.ico').pipe(gulp.dest('build/'));
-	return gulp.src('images/*').pipe(gulp.dest('build/images/'));
+	return gulp.src(['images/*', 'images/**/*']).pipe(gulp.dest('build/images/'));
 });
 
 gulp.task('build', ['assets', 'inject']);

@@ -1,6 +1,9 @@
 var nav = document.querySelector('#nav'),
-	cover = document.querySelector('#cover'),
 	API_URL = '@@apiUrl',
+
+	// Cover section
+	cover = document.querySelector('#cover'),
+	coverHeader = cover.querySelector('h1'),
 
 	// Team section
 	team = document.querySelector('#team'),
@@ -131,6 +134,16 @@ function windowScroll(ev) {
 		if (newActive !== null) {
 			newActive.classList.add('active');
 		}
+	}
+
+	// Do Cover things
+	if (newActive === cover) {
+		var relativeTop = scrollTop / COVER_HEIGHT;
+		cover.style.opacity = 1 - relativeTop;
+		coverHeader.style.backgroundPosition = 'center '+(50 + (50 * relativeTop))+'%';
+	} else {
+		cover.style.opacity = 0;
+		coverHeader.style.backgroundPosition = 'center 100%';
 	}
 
 	// Do Team things

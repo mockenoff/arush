@@ -105,9 +105,6 @@ h1, h2, h3, h4, h5, h6 {
 	background-repeat: no-repeat;
 	background-position: center center;
 }
-	.splash h1 {
-		text-indent: -99999px;
-	}
 	.splash h2 {
 		left: 0;
 		top: 150%;
@@ -119,8 +116,20 @@ h1, h2, h3, h4, h5, h6 {
 		pointer-events: none;
 		text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
 	}
-	.splash.cover {
-		background-image: url(/images/cover.jpg);
+.splash.cover {
+	background-image: url(/images/splash/background.png);
+}
+	.splash.cover h1 {
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+		overflow: hidden;
+		position: absolute;
+		text-indent: -99999px;
+		background: url(/images/splash/text.png) no-repeat center center;
+		background-size: 60%;
 	}
 
 /*
@@ -236,8 +245,22 @@ h1, h2, h3, h4, h5, h6 {
 	height: auto;
 	min-height: 100%;
 }
+	#contact:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		background: url(/images/splash/background.png) no-repeat center center;
+		background-size: cover;
+		opacity: 0.7;
+	}
 .contact-wrapper {
 	display: flex;
+	position: relative;
 	width: calc(100% - 40px);
 	margin: 190px auto 70px auto;
 }
@@ -454,5 +477,14 @@ footer {
 	}
 	100% {
 		transition: rotate(0deg);
+	}
+}
+
+/*
+	MEDIA QUERIES
+*/
+@media (orientation: portrait) {
+	.splash.cover h1 {
+		background-size: 85%;
 	}
 }

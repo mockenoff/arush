@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5, h6 {
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
-		transition: opacity 0.2s ease-out;
+		transition: opacity 0.5s ease-out;
 	}
 		#team li:nth-child(1):before {
 			background-image: url(/images/team/chris.png);
@@ -197,7 +197,7 @@ h1, h2, h3, h4, h5, h6 {
 		#team .active-5 li:nth-child(6):before,
 		#team .active-6 li:nth-child(7):before,
 		#team .active-7 li:nth-child(8):before {
-			opacity: 0.085;
+			opacity: 0.09;
 		}
 #team span {
 	right: 0;
@@ -265,10 +265,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 	.gram-feed a {
 		display: block;
-		-webkit-filter: saturate(40%);
-		-moz-filter: saturate(40%);
-		-o-filter: saturate(40%);
-		filter: saturate(40%);
+		-webkit-filter: saturate(30%);
+		-moz-filter: saturate(30%);
+		-o-filter: saturate(30%);
+		filter: saturate(30%);
 		transition: all 0.2s ease-out;
 		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
 	}

@@ -103,8 +103,10 @@ window.addEventListener('resize', windowResize);
 windowResize();
 
 // Window scroll
-function windowScroll(ev) {
-	var scrollTop = ev === undefined ? window.scrollY : ev.target.scrollingElement.scrollTop;
+function windowScroll(scrollTop) {
+	if (typeof scrollTop !== 'number') {
+		scrollTop = window.scrollY;
+	}
 
 	// Set nav opacity
 	nav.style.opacity = Math.min(1, scrollTop / COVER_HEIGHT);
@@ -275,8 +277,21 @@ function windowScroll(ev) {
 		contactHeader.style.top = contactHeaderY.min+'px';
 	}
 }
-document.addEventListener('scroll', windowScroll, false);
-document.addEventListener('touchmove', windowScroll, false);
+
+var lastScroll = 0,
+	ticking = false;
+
+window.addEventListener('scroll', function() {
+	lastScroll = window.scrollY;
+	if (ticking === false) {
+		window.requestAnimationFrame(function() {
+			windowScroll(lastScroll);
+			ticking = false;
+		});
+	}
+	ticking = true;
+});
+
 windowScroll();
 
 // Set the position of an element according to its percentage progress

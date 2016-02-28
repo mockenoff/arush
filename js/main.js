@@ -275,7 +275,8 @@ function windowScroll(ev) {
 		contactHeader.style.top = contactHeaderY.min+'px';
 	}
 }
-window.addEventListener('scroll', windowScroll);
+document.addEventListener('scroll', windowScroll, false);
+document.addEventListener('touchmove', windowScroll, false);
 windowScroll();
 
 // Set the position of an element according to its percentage progress

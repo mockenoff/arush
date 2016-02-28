@@ -446,8 +446,8 @@ footer {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	padding: 8px 0;
 	min-height: 40px;
+	padding: 8px 20px;
 	line-height: 150%;
 	position: absolute;
 	text-align: center;
@@ -539,5 +539,25 @@ footer {
 @media (orientation: portrait) {
 	.splash.cover h1 {
 		background-size: 85%;
+	}
+}
+@media (max-width: 480px) and (orientation: portrait) {
+	#team span {
+		font-size: 12em;
+	}
+	.tube-feed li {
+		flex-basis: 100%;
+	}
+		.tube-feed li:nth-child(3n+2) {
+			padding: 0;
+		}
+	.contact-wrapper {
+		flex-wrap: wrap;
+	}
+		.contact-item {
+			flex-basis: 100%;
+		}
+	.user-form {
+		margin: 20px 0;
 	}
 }

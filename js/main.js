@@ -259,7 +259,7 @@ function windowScroll(scrollTop) {
 			mediaHeader.style.top = mediaHeaderY.max - ((mediaHeaderY.max - mediaHeaderY.active) * opacity)+'px';
 		} else {
 			mediaHeader.style.opacity = 0;
-			mediaHeader.style.top = mediaHeaderY.min+'px';
+			mediaHeader.style.top = mediaHeaderY.max+'px';
 		}
 
 		for (var i = 0, l = gramItems.length; i < l; i++) {
@@ -271,7 +271,7 @@ function windowScroll(scrollTop) {
 		}
 	} else {
 		mediaHeader.style.opacity = 0;
-		mediaHeader.style.top = mediaHeaderY.min+'px';
+		mediaHeader.style.top = mediaHeaderY.max+'px';
 	}
 
 	// Do Contact things
@@ -286,11 +286,11 @@ function windowScroll(scrollTop) {
 			contactHeader.style.top = contactHeaderY.max - ((contactHeaderY.max - contactHeaderY.active) * opacity)+'px';
 		} else {
 			contactHeader.style.opacity = 0;
-			contactHeader.style.top = contactHeaderY.min+'px';
+			contactHeader.style.top = contactHeaderY.max+'px';
 		}
 	} else {
 		contactHeader.style.opacity = 0;
-		contactHeader.style.top = contactHeaderY.min+'px';
+		contactHeader.style.top = contactHeaderY.max+'px';
 	}
 }
 

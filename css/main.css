@@ -116,6 +116,9 @@ h1, h2, h3, h4, h5, h6 {
 		pointer-events: none;
 		text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
 	}
+	.splash:not(.active) h2 {
+		transition: top 0.06s linear;
+	}
 
 /*
 	COVER
@@ -199,6 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding-left: 5px;
 	box-sizing: border-box;
 	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+	transition: top 0.1s ease-out, left 0.1s ease-out;
 }
 	#team li:before {
 		content: '';
@@ -296,6 +300,7 @@ h1, h2, h3, h4, h5, h6 {
 		flex-basis: 25%;
 		position: relative;
 		padding: 0 0 10px 0;
+		transition: top 0.06s linear;
 	}
 		.tube-feed li:nth-child(3n+2) {
 			padding: 0 10px 10px 10px;
@@ -360,6 +365,7 @@ h1, h2, h3, h4, h5, h6 {
 		flex-basis: 25%;
 		position: relative;
 		padding: 0 0 10px 0;
+		transition: top 0.06s linear;
 	}
 		.gram-feed li:nth-child(3n+2) {
 			padding: 0 10px 10px 10px;

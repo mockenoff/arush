@@ -43,9 +43,9 @@ gulp.task('templates', function() {
 		},
 		image: {
 			url: 'http://arushdball.com/images/splash/cover.png',
-			width: 851,
-			height: 361,
-			type: 'image/jpeg',
+			width: 1920,
+			height: 1200,
+			type: 'image/png',
 		},
 		sameAs: [
 			'https://facebook.com/arushdball/',

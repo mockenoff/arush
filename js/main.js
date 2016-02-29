@@ -4,6 +4,7 @@ var nav = document.querySelector('#nav'),
 	// Cover section
 	cover = document.querySelector('#cover'),
 	coverHeader = cover.querySelector('h1'),
+	downer = cover.querySelector('.downer'),
 
 	// Team section
 	team = document.querySelector('#team'),
@@ -115,6 +116,12 @@ windowResize();
 function windowScroll(scrollTop) {
 	if (typeof scrollTop !== 'number') {
 		scrollTop = window.scrollY;
+	}
+
+	// Get rid of the downer
+	if (downer !== null && scrollTop > HALF_WINDOW_HEIGHT) {
+		downer.classList.remove('animate');
+		downer = null;
 	}
 
 	// Set nav opacity

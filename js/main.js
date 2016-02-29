@@ -242,11 +242,11 @@ function windowScroll(scrollTop) {
 		}
 
 		for (var i = 0, l = gramItems.length; i < l; i++) {
-			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 4)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 3)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
 		}
 
 		for (i = 0, l = tubeItems.length; i < l; i++) {
-			tubeItems[i].style.top = ((-1 / ((i + 1) * 8)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			tubeItems[i].style.top = ((-1 / ((i + 1) * 6)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
 		}
 	} else if (newActive === cover || newActive === team) {
 		var mediaBorder = COVER_HEIGHT + TEAM_HEIGHT,
@@ -263,11 +263,11 @@ function windowScroll(scrollTop) {
 		}
 
 		for (var i = 0, l = gramItems.length; i < l; i++) {
-			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 4)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 3)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
 		}
 
 		for (i = 0, l = tubeItems.length; i < l; i++) {
-			tubeItems[i].style.top = ((-1 / ((i + 1) * 8)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			tubeItems[i].style.top = ((-1 / ((i + 1) * 6)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
 		}
 	} else {
 		mediaHeader.style.opacity = 0;

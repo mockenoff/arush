@@ -17,7 +17,7 @@ class TubeFeed(object):
 
 	"""
 
-	API_KEY = 'AIzaSyAMSBe9Y30nLvdifvV6zGxpxSvYQmHmBFM'
+	API_KEY = 'dummy-key'
 	CHANNEL_ID = 'UC4pYi_L7cYrM5i1iWHV4_qQ'
 	SEARCH_BASE = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&key=%s&channelId=%s&maxResults=50&order=date&type=video'
 	VIDEO_BASE = 'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&key=%s&id=%s'
@@ -180,7 +180,7 @@ class GramFeed(object):
 	"""
 
 	USER_ID = 2983543419
-	CLIENT_ID = '5833496720774dd882a44dfc836ed72c'
+	CLIENT_ID = 'dummy-key'
 	MEDIA_ENDPOINT = 'https://api.instagram.com/v1/users/{user_id}/media/recent/?client_id={client_id}'
 
 	def __init__(self, client_id=None, user_id=None, max_items=3):

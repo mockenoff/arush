@@ -1,8 +1,6 @@
 # arush
 
-Redesign of the [Adrenaline Rush homepage](http://arushdball.com/).
-
-Probably gonna use Gulp or something for a build process.
+Redesign of the [Adrenaline Rush](http://arushdball.com/) website.
 
 ## Build Process
 

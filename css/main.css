@@ -659,7 +659,7 @@ footer {
 		font-size: 15em;
 	}
 }
-@media (max-width: 480px) and (orientation: portrait) {
+@media (max-width: 480px) {
 	#team span {
 		font-size: 12em;
 	}
@@ -677,5 +677,11 @@ footer {
 		}
 	.user-form {
 		margin: 20px 0;
+	}
+}
+@media (max-height: 400px) {
+	.splash h2 {
+		font-size: 2.75em;
+		margin-top: -30px;
 	}
 }

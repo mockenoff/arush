@@ -321,16 +321,10 @@ h1, h2, h3, h4, h5, h6 {
 		}
 	.tube-feed img {
 		width: 100%;
-		-webkit-filter: saturate(30%);
-		-moz-filter: saturate(30%);
-		-o-filter: saturate(30%);
 		filter: saturate(30%);
 		transition: all 0.2s ease-out;
 	}
 		.tube-feed a:hover img, .tube-feed a:focus img {
-			-webkit-filter: saturate(100%);
-			-moz-filter: saturate(100%);
-			-o-filter: saturate(100%);
 			filter: saturate(100%);
 		}
 	.tube-feed .embed-container {
@@ -348,17 +342,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 	.gram-feed a {
 		display: block;
-		-webkit-filter: saturate(30%);
-		-moz-filter: saturate(30%);
-		-o-filter: saturate(30%);
 		filter: saturate(30%);
 		transition: all 0.2s ease-out;
 		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
 	}
 		.gram-feed a:hover, .gram-feed a:focus {
-			-webkit-filter: saturate(100%);
-			-moz-filter: saturate(100%);
-			-o-filter: saturate(100%);
 			filter: saturate(100%);
 		}
 	.gram-feed img {
@@ -402,17 +390,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 	.contact-wrapper a {
 		color: rgba(255, 255, 255, 0.5);
-		-webkit-filter: saturate(40%);
-		-moz-filter: saturate(40%);
-		-o-filter: saturate(40%);
 		filter: saturate(40%);
 		transition: all 0.2s ease-out;
 	}
 	.contact-wrapper a:hover, .contact-wrapper a:focus {
 		color: rgba(255, 255, 255, 0.8);
-		-webkit-filter: saturate(100%);
-		-moz-filter: saturate(100%);
-		-o-filter: saturate(100%);
 		filter: saturate(100%);
 	}
 	.contact-wrapper a:active {

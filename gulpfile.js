@@ -9,6 +9,7 @@ var gulp = require('gulp'),
 	cssnano = require('gulp-cssnano'),
 	inject = require('gulp-simple-inject'),
 	replace = require('gulp-replace-task'),
+	autoprefixer = require('gulp-autoprefixer'),
 
 	minimist = require('minimist'),
 
@@ -153,6 +154,10 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
 	return gulp.src('css/*.css')
 		.pipe(concat('all.css'))
+		.pipe(autoprefixer({
+			cascade: false,
+			browsers: ['last 2 versions'],
+		}))
 		.pipe(gulpif(options.env === 'production', cssnano()))
 		.pipe(gulp.dest('build/'));
 });

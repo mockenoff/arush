@@ -40,7 +40,7 @@ gulp.task('templates', function() {
 			creator: '@mockenoff',
 		},
 		image: {
-			url: 'http://arushdball.com/images/cover.jpg',
+			url: 'http://arushdball.com/images/splash/cover.png',
 			width: 851,
 			height: 361,
 			type: 'image/jpeg',

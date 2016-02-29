@@ -25,6 +25,7 @@ var nav = document.querySelector('#nav'),
 	tubeList = media.querySelector('.tube-feed'),
 	tubeItems = [],
 	tubeTemplate = document.querySelector('#tube-template').innerHTML,
+	iframeTemplate = document.querySelector('#iframe-template').innerHTML,
 	mediaHeader = media.querySelector('h2'),
 	mediaHeaderY = {
 		min: -mediaHeader.clientHeight,
@@ -65,10 +66,18 @@ gramItems = gramList.querySelectorAll('li');
 
 innerHTML = '';
 for (i = 0, l = FEEDS.YOUTUBE.length; i < l; i++) {
-	innerHTML += tubeTemplate.replace('{{youtube_id}}', FEEDS.YOUTUBE[i].youtube_id).replace('{{width}}', WINDOW_WIDTH).replace('{{height}}', (WINDOW_WIDTH * .5625));
+	innerHTML += tubeTemplate.replace('{{thumbnail}}', FEEDS.YOUTUBE[i].thumbnail).replace(/{{youtube_id}}/g, FEEDS.YOUTUBE[i].youtube_id);
 }
 tubeList.innerHTML = innerHTML;
 tubeItems = tubeList.querySelectorAll('li');
+
+tubeList.addEventListener('click', function(ev) {
+	ev.preventDefault();
+	var container = ev.target.parentElement;
+	if (container.dataset.id !== undefined) {
+		container.parentElement.innerHTML = iframeTemplate.replace('{{youtube_id}}', container.dataset.id).replace('{{width}}', WINDOW_WIDTH).replace('{{height}}', (WINDOW_WIDTH * .5625));
+	}
+});
 
 // Make image loads count as a resize since otherwise they don't have height
 var images = gramList.querySelectorAll('img');

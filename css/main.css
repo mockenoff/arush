@@ -250,6 +250,42 @@ h1, h2, h3, h4, h5, h6 {
 		.tube-feed li:nth-child(3n+2) {
 			padding: 0 10px 10px 10px;
 		}
+	.tube-feed a {
+		width: 100%;
+		display: block;
+		position: relative;
+	}
+		.tube-feed a:after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0.65;
+			pointer-events: none;
+			background: url(/images/social/play.png) no-repeat center center;
+			background-size: 20%;
+			transition: opacity 0.2s ease-out;
+		}
+		.tube-feed a:hover:after, .tube-feed a:focus:after {
+			opacity: 1;
+		}
+	.tube-feed img {
+		width: 100%;
+		-webkit-filter: saturate(30%);
+		-moz-filter: saturate(30%);
+		-o-filter: saturate(30%);
+		filter: saturate(30%);
+		transition: all 0.2s ease-out;
+	}
+		.tube-feed a:hover img, .tube-feed a:focus img {
+			-webkit-filter: saturate(100%);
+			-moz-filter: saturate(100%);
+			-o-filter: saturate(100%);
+			filter: saturate(100%);
+		}
 	.tube-feed .embed-container {
 		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
 	}

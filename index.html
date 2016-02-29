@@ -110,7 +110,15 @@
 	</script>
 
 	<script type="text/template" id="tube-template">
-		<li><div class="embed-container"><iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0" frameborder="0" width="{{width}}" height="{{height}}"></iframe></div></li>
+		<li><div class="embed-container">
+			<a href="https://www.youtube.com/watch?v={{youtube_id}}" data-id="{{youtube_id}}">
+				<img src="{{thumbnail}}" />
+			</a>
+		</div></li>
+	</script>
+
+	<script type="text/template" id="iframe-template">
+		<iframe src="http://www.youtube.com/embed/{{youtube_id}}?showinfo=0&autoplay=1" frameborder="0" width="{{width}}" height="{{height}}"></iframe>
 	</script>
 
 	<!-- inject:js -->

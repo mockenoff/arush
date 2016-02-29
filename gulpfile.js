@@ -5,6 +5,7 @@ var gulp = require('gulp'),
 	watch = require('gulp-watch'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
+	addsrc = require('gulp-add-src'),
 	cssnano = require('gulp-cssnano'),
 	inject = require('gulp-simple-inject'),
 	replace = require('gulp-replace-task'),
@@ -129,7 +130,7 @@ gulp.task('templates', function() {
 
 gulp.task('scripts', function() {
 	var API_URL = options.env === 'production' ? '' : 'http://local.arushdball.com:5000';
-	return gulp.src(['js/feeds.js', 'js/anim.js', 'js/main.js'])
+	return gulp.src(['js/feeds.js', 'js/anim.js', 'js/*.js', '!js/*.min.js'])
 		.pipe(concat('all.js'))
 		.pipe(replace({
 			patterns: [
@@ -143,6 +144,8 @@ gulp.task('scripts', function() {
 			params: ['window', 'document', 'undefined'],
 			args: ['window', 'document'],
 		}))
+		.pipe(addsrc('js/*.min.js'))
+		.pipe(concat('all.js'))
 		.pipe(gulpif(options.env === 'production', uglify()))
 		.pipe(gulp.dest('build/'));
 });

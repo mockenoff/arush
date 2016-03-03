@@ -9,7 +9,7 @@ var nav = document.querySelector('#nav'),
 	// Team section
 	team = document.querySelector('#team'),
 	teamList = team.querySelector('ul'),
-	teamNames = team.querySelectorAll('li'),
+	teamNames = teamList.querySelectorAll('.name'),
 	teamHeader = team.querySelector('h2'),
 	teamHeaderY = {
 		min: -teamHeader.clientHeight,
@@ -174,11 +174,11 @@ function windowScroll(scrollTop) {
 
 		if (relativeTop < percentage * teamLength) {
 			teamHeader.style.opacity = 1;
-			teamHeader.style.top = teamHeaderY.active+'px';
+			setTransform(teamHeader, 0, teamHeaderY.active);
 		} else {
 			var opacity = 1 - ((relativeTop - (percentage * teamLength)) / percentage);
 			teamHeader.style.opacity = opacity;
-			teamHeader.style.top = teamHeaderY.min - ((teamHeaderY.min - teamHeaderY.active) * opacity)+'px';
+			setTransform(teamHeader, 0, (teamHeaderY.min - ((teamHeaderY.min - teamHeaderY.active) * opacity)));
 		}
 
 		for (var i = 0; i < teamLength; i++) {
@@ -205,10 +205,10 @@ function windowScroll(scrollTop) {
 		if (scrollTop > HALF_WINDOW_HEIGHT) {
 			var opacity = (scrollTop - HALF_WINDOW_HEIGHT) / HALF_WINDOW_HEIGHT;
 			teamHeader.style.opacity = opacity;
-			teamHeader.style.top = teamHeaderY.max - ((teamHeaderY.max - teamHeaderY.active) * opacity)+'px';
+			setTransform(teamHeader, 0, (teamHeaderY.max - ((teamHeaderY.max - teamHeaderY.active) * opacity)));
 		} else {
 			teamHeader.style.opacity = 0;
-			teamHeader.style.top = teamHeaderY.max+'px';
+			setTransform(teamHeader, 0, teamHeaderY.max);
 		}
 		if (oldActive !== cover) {
 			for (var i = 0, l = ANIM.team.length; i < l; i++) {
@@ -218,7 +218,7 @@ function windowScroll(scrollTop) {
 	} else {
 		teamList.className = '';
 		teamHeader.style.opacity = 0;
-		teamHeader.style.top = teamHeaderY.min+'px';
+		setTransform(teamHeader, 0, teamHeaderY.min);
 		if (oldActive === team) {
 			for (var i = 0, l = ANIM.team.length; i < l; i++) {
 				setAnimPosition(teamNames[i], ANIM.team[i][ANIM.team[i].length - 1], 1);
@@ -234,19 +234,19 @@ function windowScroll(scrollTop) {
 
 		if (scrollTop < scrollBorder) {
 			mediaHeader.style.opacity = 1;
-			mediaHeader.style.top = mediaHeaderY.active+'px';
+			setTransform(mediaHeader, 0, mediaHeaderY.active);
 		} else {
 			var opacity = 1 - ((scrollTop - scrollBorder) / HALF_MEDIA_HEIGHT);
 			mediaHeader.style.opacity = opacity;
-			mediaHeader.style.top = mediaHeaderY.min - ((mediaHeaderY.min - mediaHeaderY.active) * opacity)+'px';
+			setTransform(mediaHeader, 0, mediaHeaderY.min - ((mediaHeaderY.min - mediaHeaderY.active) * opacity));
 		}
 
 		for (var i = 0, l = gramItems.length; i < l; i++) {
-			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 3)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			setTransform(gramItems[l-1-i], 0, ((-1 / ((i + 1) * 3)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder))));
 		}
 
 		for (i = 0, l = tubeItems.length; i < l; i++) {
-			tubeItems[i].style.top = ((-1 / ((i + 1) * 6)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			setTransform(tubeItems[i], 0, ((-1 / ((i + 1) * 6)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder))));
 		}
 	} else if (newActive === cover || newActive === team) {
 		var mediaBorder = COVER_HEIGHT + TEAM_HEIGHT,
@@ -256,41 +256,41 @@ function windowScroll(scrollTop) {
 		if (scrollTop > scrollBorder) {
 			var opacity = (scrollTop - scrollBorder) / HALF_MEDIA_HEIGHT;
 			mediaHeader.style.opacity = opacity;
-			mediaHeader.style.top = mediaHeaderY.max - ((mediaHeaderY.max - mediaHeaderY.active) * opacity)+'px';
+			setTransform(mediaHeader, 0, mediaHeaderY.max - ((mediaHeaderY.max - mediaHeaderY.active) * opacity));
 		} else {
 			mediaHeader.style.opacity = 0;
-			mediaHeader.style.top = mediaHeaderY.max+'px';
+			setTransform(mediaHeader, 0, mediaHeaderY.max);
 		}
 
 		for (var i = 0, l = gramItems.length; i < l; i++) {
-			gramItems[l-1-i].style.top = ((-1 / ((i + 1) * 3)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			setTransform(gramItems[l-1-i], 0, ((-1 / ((i + 1) * 3)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder))));
 		}
 
 		for (i = 0, l = tubeItems.length; i < l; i++) {
-			tubeItems[i].style.top = ((-1 / ((i + 1) * 6)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder)))+'px';
+			setTransform(tubeItems[i], 0, ((-1 / ((i + 1) * 6)) * ((relativeTop * WINDOW_HEIGHT) + (scrollTop - mediaBorder))));
 		}
 	} else {
 		mediaHeader.style.opacity = 0;
-		mediaHeader.style.top = mediaHeaderY.max+'px';
+		setTransform(mediaHeader, 0, mediaHeaderY.max);
 	}
 
 	// Do Contact things
 	if (newActive === contact) {
 		contactHeader.style.opacity = 1;
-		contactHeader.style.top = contactHeaderY.active+'px';
+		setTransform(contactHeader, 0, contactHeaderY.active);
 	} else if (newActive === media) {
 		var scrollBorder = COVER_HEIGHT + TEAM_HEIGHT + MEDIA_HEIGHT - HALF_CONTACT_HEIGHT;
 		if (scrollTop > scrollBorder) {
 			var opacity = (scrollTop - scrollBorder) / HALF_CONTACT_HEIGHT;
 			contactHeader.style.opacity = opacity;
-			contactHeader.style.top = contactHeaderY.max - ((contactHeaderY.max - contactHeaderY.active) * opacity)+'px';
+			setTransform(contactHeader, 0, contactHeaderY.max - ((contactHeaderY.max - contactHeaderY.active) * opacity));
 		} else {
 			contactHeader.style.opacity = 0;
-			contactHeader.style.top = contactHeaderY.max+'px';
+			setTransform(contactHeader, 0, contactHeaderY.max);
 		}
 	} else {
 		contactHeader.style.opacity = 0;
-		contactHeader.style.top = contactHeaderY.max+'px';
+		setTransform(contactHeader, 0, contactHeaderY.max);
 	}
 }
 
@@ -310,6 +310,21 @@ window.addEventListener('scroll', function() {
 
 windowScroll();
 
+// Set the transform of an element
+function setTransform(elem, xPos, yPos) {
+	var transform = '';
+	xPos = parseInt(xPos, 10);
+	yPos = parseInt(yPos, 10);
+	if (typeof xPos === 'number' && typeof yPos === 'number') {
+		transform = 'translate('+xPos+'px, '+yPos+'px)';
+	} else if (isNaN(xPos) === false) {
+		transform = 'translateX('+xPos+'px)';
+	} else if (isNaN(yPos) === false) {
+		transform = 'translateY('+yPos+'px)';
+	}
+	elem.style.transform = elem.style['-webkit-transform'] = elem.style['-ms-transform'] = transform;
+}
+
 // Set the position of an element according to its percentage progress
 function setAnimPosition(elem, item, progress) {
 	var relativeTime = (progress - item.time[0]) / (item.time[1] - item.time[0]),
@@ -317,8 +332,7 @@ function setAnimPosition(elem, item, progress) {
 			(item.end[0] - item.start[0]) * relativeTime,
 			(item.end[1] - item.start[1]) * relativeTime,
 		];
-	elem.style.left = ((item.start[0] + scaledDiff[0]) * WINDOW_WIDTH)+'px';
-	elem.style.top = ((item.start[1] + scaledDiff[1]) * WINDOW_HEIGHT)+'px';
+	setTransform(elem, ((item.start[0] + scaledDiff[0]) * WINDOW_WIDTH), ((item.start[1] + scaledDiff[1]) * WINDOW_HEIGHT));
 }
 
 // Intercept the contact form submission

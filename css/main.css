@@ -106,8 +106,8 @@ h1, h2, h3, h4, h5, h6 {
 	background-position: center center;
 }
 	.splash h2 {
+		top: 0;
 		left: 0;
-		top: 150%;
 		z-index: 1;
 		width: 100%;
 		font-size: 4em;
@@ -117,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 		text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
 	}
 	.splash:not(.active) h2 {
-		transition: top 0.06s linear;
+		transition: transform 0.06s linear;
 	}
 
 /*
@@ -192,8 +192,8 @@ h1, h2, h3, h4, h5, h6 {
 	height: 3000px;
 }
 #team li {
-	top: 100%;
-	left: 100%;
+	top: 0;
+	left: 0;
 	width: 100%;
 	display: block;
 	position: fixed;
@@ -202,7 +202,6 @@ h1, h2, h3, h4, h5, h6 {
 	padding-left: 5px;
 	box-sizing: border-box;
 	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-	transition: top 0.1s ease-out, left 0.1s ease-out;
 }
 	#team li:before {
 		content: '';
@@ -254,10 +253,21 @@ h1, h2, h3, h4, h5, h6 {
 			opacity: 0.09;
 		}
 #team span {
+	position: fixed;
+}
+#team .name {
+	top: 0;
+	left: 100%;
+	padding-left: 2px;
+}
+	#team.active .name {
+		transition: left 0.1s ease-out, transform 0.1s ease-out;
+		left: 0;
+	}
+#team .number {
 	right: 0;
 	bottom: 0;
 	opacity: 0;
-	position: fixed;
 	font-size: 22em;
 	line-height: 52%;
 	text-shadow: none;
@@ -266,14 +276,14 @@ h1, h2, h3, h4, h5, h6 {
 	color: rgba(255, 255, 255, 0.05);
 	transition: opacity 0.5s ease-out;
 }
-	#team .active-0 li:nth-child(1) span,
-	#team .active-1 li:nth-child(2) span,
-	#team .active-2 li:nth-child(3) span,
-	#team .active-3 li:nth-child(4) span,
-	#team .active-4 li:nth-child(5) span,
-	#team .active-5 li:nth-child(6) span,
-	#team .active-6 li:nth-child(7) span,
-	#team .active-7 li:nth-child(8) span {
+	#team .active-0 li:nth-child(1) .number,
+	#team .active-1 li:nth-child(2) .number,
+	#team .active-2 li:nth-child(3) .number,
+	#team .active-3 li:nth-child(4) .number,
+	#team .active-4 li:nth-child(5) .number,
+	#team .active-5 li:nth-child(6) .number,
+	#team .active-6 li:nth-child(7) .number,
+	#team .active-7 li:nth-child(8) .number {
 		opacity: 1;
 	}
 
@@ -300,7 +310,7 @@ h1, h2, h3, h4, h5, h6 {
 		flex-basis: 25%;
 		position: relative;
 		padding: 0 0 10px 0;
-		transition: top 0.06s linear;
+		transition: transform 0.06s linear;
 	}
 		.tube-feed li:nth-child(3n+2) {
 			padding: 0 10px 10px 10px;
@@ -365,7 +375,7 @@ h1, h2, h3, h4, h5, h6 {
 		flex-basis: 25%;
 		position: relative;
 		padding: 0 0 10px 0;
-		transition: top 0.06s linear;
+		transition: transform 0.06s linear;
 	}
 		.gram-feed li:nth-child(3n+2) {
 			padding: 0 10px 10px 10px;

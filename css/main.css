@@ -671,12 +671,12 @@ footer {
 	}
 }
 @media (max-width: 768px) and (orientation: landscape) {
-	#team span {
+	#team .number {
 		font-size: 15em;
 	}
 }
 @media (max-width: 480px) {
-	#team span {
+	#team .number {
 		font-size: 12em;
 	}
 	.tube-feed li {

@@ -88,6 +88,9 @@ for (i = 0, l = images.length; i < l; i++) {
 	});
 }
 
+// Prevent FOUC
+document.body.classList.add('loaded');
+
 // Window resize
 function windowResize(ev) {
 	WINDOW_WIDTH = window.innerWidth;

@@ -109,6 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 		top: 0;
 		left: 0;
 		z-index: 1;
+		opacity: 0;
 		width: 100%;
 		font-size: 4em;
 		position: fixed;
@@ -116,6 +117,9 @@ h1, h2, h3, h4, h5, h6 {
 		pointer-events: none;
 		text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
 	}
+		.loaded .splash h2 {
+			opacity: 1;
+		}
 	.splash:not(.active) h2 {
 		transition: transform 0.06s linear;
 	}

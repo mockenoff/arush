@@ -254,7 +254,7 @@ h1, h2, h3, h4, h5, h6 {
 		#team .active-5 li:nth-child(6):before,
 		#team .active-6 li:nth-child(7):before,
 		#team .active-7 li:nth-child(8):before {
-			opacity: 0.09;
+			opacity: 0.2;
 		}
 #team span {
 	position: fixed;
@@ -277,7 +277,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-shadow: none;
 	pointer-events: none;
 	letter-spacing: -0.1em;
-	color: rgba(255, 255, 255, 0.05);
+	color: rgba(255, 255, 255, 0.1);
 	transition: opacity 0.5s ease-out;
 }
 	#team .active-0 li:nth-child(1) .number,
